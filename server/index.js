@@ -73,6 +73,10 @@ app.post('/api/evaluate', (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`BizEvaluator Professional Backend running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`BizEvaluator Professional Backend running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
